@@ -1,0 +1,39 @@
+# Self-hosted OpenRouteService with the truck (driving-hgv) profile.
+#
+# WHY: the public ORS free tier is ~2,000 routing requests/day. Running your own
+# instance removes that limit and gives you a private Europe routing server that
+# the app can call (just change OrsClient.URL to point at http://YOUR_HOST:8080).
+#
+# REQUIREMENTS: Docker + a machine with enough RAM. Europe needs a lot
+# (16 GB+ recommended; a single country like Germany is far lighter to start).
+#
+# STEPS:
+#   1. Download an OSM extract into ./data, e.g. Europe or one country:
+#        mkdir -p data
+#        curl -L -o data/region.osm.pbf https://download.geofabrik.de/europe/germany-latest.osm.pbf
+#      (Europe-wide: https://download.geofabrik.de/europe-latest.osm.pbf  — large, slow first build)
+#   2. docker compose up -d
+#   3. First boot builds the routing graph (can take a long time for big extracts).
+#      Watch progress:  docker compose logs -f
+#   4. Ready when you can hit:  http://localhost:8080/ors/v2/health
+#
+# Pin a specific image tag for reproducibility once you've chosen a version.
+
+services:
+  ors:
+    image: openrouteservice/openrouteservice:latest
+    container_name: ors-truck
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/home/ors/files          # put region.osm.pbf here
+      - ./graphs:/home/ors/graphs       # generated routing graphs (persisted)
+      - ./elevation:/home/ors/elevation_cache
+      - ./config:/home/ors/config       # optional custom ors-config.yml
+    environment:
+      # Build only the profiles you need. driving-hgv = truck.
+      ORS_ENABLED_PROFILES: "driving-car,driving-hgv"
+      # Point ORS at the extract you downloaded.
+      REBUILD_GRAPHS: "false"           # set "true" to force a rebuild after swapping the pbf
+      JAVA_OPTS: "-Xms2g -Xmx12g"       # raise -Xmx for Europe-wide builds
+    restart: unless-stopped

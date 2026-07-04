@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Kamyon Rota</string>
+
+    <string name="status_online">● Çevrimiçi</string>
+    <string name="status_offline">● Çevrimdışı</string>
+
+    <string name="hint_pick_start">Başlangıç için haritaya dokunun (veya konumunuz kullanılır)</string>
+    <string name="hint_pick_end">Şimdi varış noktasına dokunun</string>
+    <string name="hint_ready">Hazır — \"Rota bul\"a dokunun</string>
+
+    <string name="find_route">Rota bul</string>
+    <string name="truck_specs">Kamyon ölçüleri</string>
+    <string name="directions">Yol tarifi</string>
+    <string name="clear">Temizle</string>
+    <string name="save">Kaydet</string>
+
+    <string name="start">Başlangıç</string>
+    <string name="destination">Varış</string>
+
+    <string name="height_label">Yükseklik (m)</string>
+    <string name="width_label">Genişlik (m)</string>
+    <string name="length_label">Uzunluk (m)</string>
+    <string name="weight_label">Ağırlık (ton)</string>
+    <string name="axle_label">Dingil yükü (ton)</string>
+    <string name="hazmat_label">Tehlikeli madde taşıyor</string>
+
+    <string name="specs_saved">Ölçüler kaydedildi</string>
+    <string name="saved_route">kayıtlı rota</string>
+    <string name="need_points">Önce haritada en az bir nokta seçin</string>
+    <string name="need_start">Başlangıç noktası yok ve konum alınamadı</string>
+
+    <string name="status_tiles_ready">" · TR verisi ✓"</string>
+    <string name="tiles_needed_title">Çevrimdışı veri gerekli</string>
+    <string name="tiles_needed_body">Rota bulmak için Türkiye yol verisi bir kez indirilmeli (yaklaşık 1 GB). Wi-Fi önerilir ve indirme sırasında uygulama açık kalmalı. Şimdi indirilsin mi?</string>
+    <string name="download">İndir</string>
+    <string name="downloading_tiles">Türkiye verisi indiriliyor…</string>
+    <string name="tiles_ready">Türkiye çevrimdışı verisi hazır ✓</string>
+    <string name="download_cancelled">İndirme iptal edildi</string>
+    <string name="download_failed_title">İndirme başarısız</string>
+
+    <string name="api_key_needed_title">API anahtarı gerekli</string>
+    <string name="api_key_needed_body">Config.kt dosyasındaki ORS_API_KEY değerini ücretsiz OpenRouteService anahtarınızla değiştirin.\n\nÜcretsiz anahtar: openrouteservice.org/dev</string>
+</resources>
